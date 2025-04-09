@@ -3,6 +3,7 @@ import { renderHeaderComponent } from './header-component.js'
 import { posts, goToPage } from '../index.js'
 import { initLikeComponent } from './init-like-component.js'
 import { userName } from '../api.js'
+import { clearingHtml } from './clearing-html-component.js'
 
 export function renderPostsPageComponent({ appEl }) {
     // @TODO: реализовать рендер постов из api
@@ -18,9 +19,9 @@ export function renderPostsPageComponent({ appEl }) {
             if (post.likes.length === 0) {
                 likeCountText = '0'
             } else if (post.likes.length === 1) {
-                likeCountText = `${post.likes[0].name}`
+                likeCountText = `${clearingHtml(post.likes[0].name)}`
             } else if (post.likes.length === 2) {
-                likeCountText = `${post.likes[0].name} и еще 1`
+                likeCountText = `${clearingHtml(post.likes[0].name)} и еще 1`
             } else {
                 likeCountText = `${post.likes.length}`
             }
@@ -28,7 +29,7 @@ export function renderPostsPageComponent({ appEl }) {
             return `<li class="post" data-post-index="${index}"> 
                     <div class="post-header" data-user-id="${post.user.id}">
                         <img src="${post.user.imageUrl}" class="post-header__user-image">
-                        <p class="post-header__user-name">${post.user.name}</p>
+                        <p class="post-header__user-name">${clearingHtml(post.user.name)}</p>
                     </div>
                     <div class="post-image-container">
                       <img class="post-image" src="${post.imageUrl}">
@@ -42,8 +43,8 @@ export function renderPostsPageComponent({ appEl }) {
                       </p>
                     </div>
                     <p class="post-text">
-                      <span class="user-name">${userName}</span>
-                      ${post.description}
+                      <span class="user-name">${clearingHtml(userName)}</span>
+                      ${clearingHtml(post.description)}
                     </p>
                     <p class="post-date">
                       ${new Date(post.createdAt).toLocaleString()}
