@@ -2,7 +2,7 @@ import { USER_POSTS_PAGE } from '../routes.js'
 import { renderHeaderComponent } from './header-component.js'
 import { posts, goToPage } from '../index.js'
 import { initLikeComponent } from './init-like-component.js'
-import { userName } from '../api.js'
+import { userName } from '../index.js'
 import { clearingHtml } from './clearing-html-component.js'
 
 export function renderPostsPageComponent({ appEl }) {

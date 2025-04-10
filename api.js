@@ -6,17 +6,6 @@ const personalKey = 'pavekatal'
 const baseHost = 'https://wedev-api.sky.pro'
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`
 
-export let isToken = ''
-export let userName = ''
-
-export const updateToken = (newToken) => {
-    isToken = newToken
-}
-
-export const updateUserName = (newName) => {
-    userName = newName
-}
-
 export function getPosts({ token }) {
     return fetch(postsHost, {
         method: 'GET',
