@@ -25,6 +25,22 @@ export function getPosts({ token }) {
         })
 }
 
+export function addingPosts({ token, description, imageUrl }) {
+    return fetch(postsHost, {
+        method: 'POST',
+        headers: {
+            Authorization: token,
+        },
+        body: JSON.stringify({ description, imageUrl, forceError: true }),
+    }).then((response) => {
+        if (response.status === 400) {
+            throw new Error('Запрос содержит ошибку')
+        }
+
+        return response.json()
+    })
+}
+
 export function registerUser({ login, password, name, imageUrl }) {
     return fetch(baseHost + '/api/user', {
         method: 'POST',

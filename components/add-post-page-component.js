@@ -28,19 +28,37 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
             '.upload-image-container',
         )
 
-        if (uploadImageContainer) {
-            renderUploadImageComponent({
-                element: uploadImageContainer,
-                onImageUrlChange(newImageUrl) {
-                    imageUrl = newImageUrl
-                },
-            })
-        }
+        renderUploadImageComponent({
+            element: uploadImageContainer,
+            onImageUrlChange(newImageUrl) {
+                imageUrl = newImageUrl
+                console.log(imageUrl)
+            },
+        })
 
         document.getElementById('add-button').addEventListener('click', () => {
+            const imageDescription =
+                document.querySelector('.add-input-post').value
+            const imageUploadUrl = imageUrl //document.querySelector('.file-upload-image')
+
+            if (!imageDescription && !imageUploadUrl) {
+                alert('Загрузите фото и добавьте к нему описание')
+                return
+            }
+
+            if (!imageDescription) {
+                alert('Добавьте описание к посту')
+                return
+            }
+
+            if (!imageUploadUrl) {
+                alert('Загрузите фото')
+                return
+            }
+
             onAddPostClick({
-                description: 'Описание картинки',
-                imageUrl: 'https://image.png',
+                description: imageDescription,
+                imageUrl: imageUploadUrl,
             })
         })
     }

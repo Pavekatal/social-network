@@ -1,5 +1,5 @@
 import { posts } from '../index.js'
-import { isToken } from '../api.js'
+import { isToken } from '../index.js'
 
 export const initLikeComponent = (renderPostsPageComponent, appEl) => {
     const likesButtons = document.querySelectorAll('.like-button')
