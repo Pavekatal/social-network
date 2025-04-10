@@ -21,15 +21,15 @@ export let page = null
 export let posts = []
 
 export let isToken = ''
-export let userName = ''
+// export let userName = ''
 
 export const updateToken = (newToken) => {
     isToken = newToken
 }
 
-export const updateUserName = (newName) => {
-    userName = newName
-}
+// export const updateUserName = (newName) => {
+//     userName = newName
+// }
 
 const getToken = () => {
     const token = user ? `Bearer ${user.token}` : undefined
