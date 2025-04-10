@@ -1,10 +1,17 @@
 // Замени на свой, чтобы получить независимый от других набор данных.
 // "боевая" версия инстапро лежит в ключе prod
-const personalKey = 'prod'
-const baseHost = 'https://webdev-hw-api.vercel.app'
+// const personalKey = 'prod'
+const personalKey = 'pavekatal'
+// const baseHost = 'https://webdev-hw-api.vercel.app'
+const baseHost = 'https://wedev-api.sky.pro'
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`
 
+export let isToken = ''
 export let userName = ''
+
+export const updateToken = (newToken) => {
+    isToken = newToken
+}
 
 export const updateUserName = (newName) => {
     userName = newName

@@ -60,6 +60,7 @@ export function renderPostsPageComponent({ appEl }) {
             </div>`
 
     appEl.innerHTML = appHtml
+
     initLikeComponent(renderPostsPageComponent, appEl)
     console.log('Актуальный список постов:', posts)
 

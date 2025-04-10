@@ -12,5 +12,3 @@ export function clearingHtml(unsafe) {
 
     return clearingChars.trim().replace(/\s+/g, ' ')
 }
-// lt;bgt;testlt;/bgt;
-// "&lt;b&gt;test&lt;/b&gt;"

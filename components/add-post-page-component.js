@@ -4,8 +4,11 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
         const appHtml = `
     <div class="page-container">
       <div class="header-container"></div>
-      Cтраница добавления поста
-      <button class="button" id="add-button">Добавить</button>
+      <div class="add-post-container">
+        <h2>Cтраница добавления поста</h2> 
+        <input type="text" class="input add-input-post" placeholder="Введите описание поста"/>
+        <button class="button" id="add-button">Добавить</button>
+      </div>
     </div>
   `
 
