@@ -25,6 +25,20 @@ export function getPosts({ token }) {
         })
 }
 
+export function getUserPosts({ token, userId }) {
+    return fetch(`${postsHost}/user-posts/${userId}`, {
+        method: 'GET',
+        headers: {
+            Authorization: token,
+        },
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Ошибка при получении постов пользователя')
+        }
+        return response.json()
+    })
+}
+
 export function addingPosts({ token, description, imageUrl }) {
     return fetch(postsHost, {
         method: 'POST',
