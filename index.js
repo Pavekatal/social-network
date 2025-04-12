@@ -15,7 +15,7 @@ import {
     removeUserFromLocalStorage,
     saveUserToLocalStorage,
 } from './helpers.js'
-import { renderUserPostsPageComponent } from './components/user-posts-page-component.js'
+// import { renderUserPostsPageComponent } from './components/user-posts-page-component.js'
 
 export let user = getUserFromLocalStorage()
 export let page = null
@@ -86,7 +86,7 @@ export const goToPage = (newPage, data) => {
             // posts = []
 
             // return renderApp()
-            // posts = []
+            posts = []
             page = LOADING_PAGE
             renderApp()
 
@@ -96,7 +96,7 @@ export const goToPage = (newPage, data) => {
             })
                 .then((userPosts) => {
                     page = USER_POSTS_PAGE
-                    posts = userPosts
+                    posts = userPosts.posts
                     renderApp()
                 })
                 .catch((error) => {
@@ -166,8 +166,8 @@ const renderApp = () => {
 
     if (page === USER_POSTS_PAGE) {
         // @TODO: реализовать страницу с фотографиями отдельного пользвателя
-        appEl.innerHTML = 'Здесь будет страница фотографий пользователя'
-        return renderUserPostsPageComponent({ appEl, userId: user.id })
+        // appEl.innerHTML = 'Здесь будет страница фотографий пользователя'
+        return renderPostsPageComponent({ appEl })
     }
 }
 
