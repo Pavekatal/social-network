@@ -1,9 +1,8 @@
 import { USER_POSTS_PAGE } from '../routes.js'
 import { renderHeaderComponent } from './header-component.js'
-import { goToPage, getToken } from '../index.js'
+import { goToPage, getToken, user } from '../index.js'
 import { initLikeComponent } from './init-like-component.js'
 import { clearingHtml } from './clearing-html-component.js'
-// import { renderPostsPageComponent } from './posts-page-component.js'
 
 export function renderUserPostsPageComponent({ appEl, posts }) {
     // @TODO: реализовать рендер постов из api
@@ -11,6 +10,7 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
         appEl.innerHTML = `<p>У этого пользователя нет публикаций</p>`
         return
     }
+
     const postHtml = posts
         .map((post, index) => {
             let likeButtonImg = post.isLiked
@@ -56,23 +56,17 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
         })
         .join('')
 
-    //     const userPostHtml = posts.map((post) => {
-    //         return `
-    //     <div class="post-header" data-user-id="${post.user.id}">
-    //         <img src="${post.user.imageUrl}" class="post-header__user-image">
-    //         <p class="post-header__user-name">${clearingHtml(post.user.name)}</p>
-    //     </div>
-    //     <h4>Публикации пользователя</h4>
-    // `
-    //     }).join('')
-    //<div class="user-post-header">${userPostHtml}</div>
-
     const appHtml = `
         <div class="page-container">
             <div class="header-container"></div>
-                <ul class="posts">${postHtml}</ul>
-            </div>`
-
+            <div class="post-user-header">
+                <h3>Публикации пользователя</h3> 
+                <img class="post-header__user-image" src="${user.imageUrl}">
+                <p class="post-user-name">${clearingHtml(user.name)}</p>
+            </div> 
+            <ul class="posts">${postHtml}</ul>
+        </div>`
+    console.log(user)
     appEl.innerHTML = appHtml
 
     initLikeComponent(renderUserPostsPageComponent, appEl, getToken(), posts)
