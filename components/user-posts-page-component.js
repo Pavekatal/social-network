@@ -1,10 +1,9 @@
 import { USER_POSTS_PAGE } from '../routes.js'
 import { renderHeaderComponent } from './header-component.js'
-import { goToPage } from '../index.js'
+import { goToPage, getToken } from '../index.js'
 import { initLikeComponent } from './init-like-component.js'
-// import { userName } from '../index.js'
 import { clearingHtml } from './clearing-html-component.js'
-import { renderPostsPageComponent } from './posts-page-component.js'
+// import { renderPostsPageComponent } from './posts-page-component.js'
 
 export function renderUserPostsPageComponent({ appEl, posts }) {
     // @TODO: реализовать рендер постов из api
@@ -76,7 +75,7 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
 
     appEl.innerHTML = appHtml
 
-    initLikeComponent(renderPostsPageComponent, appEl)
+    initLikeComponent(renderUserPostsPageComponent, appEl, getToken(), posts)
     console.log('Актуальный список постов:', posts)
 
     /**

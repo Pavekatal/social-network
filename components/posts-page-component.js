@@ -1,6 +1,6 @@
 import { USER_POSTS_PAGE } from '../routes.js'
 import { renderHeaderComponent } from './header-component.js'
-import { posts, goToPage } from '../index.js'
+import { posts, goToPage, getToken } from '../index.js'
 import { initLikeComponent } from './init-like-component.js'
 import { clearingHtml } from './clearing-html-component.js'
 
@@ -60,7 +60,7 @@ export function renderPostsPageComponent({ appEl }) {
 
     appEl.innerHTML = appHtml
 
-    initLikeComponent(renderPostsPageComponent, appEl)
+    initLikeComponent(renderPostsPageComponent, appEl, getToken(), posts)
     console.log('Актуальный список постов:', posts)
 
     /**

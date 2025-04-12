@@ -1,10 +1,15 @@
 import { addingLikesPosts, removeLikesPosts } from '../api.js'
-import { getToken, goToPage, posts } from '../index.js'
+import { goToPage } from '../index.js'
 import { AUTH_PAGE } from '../routes.js'
 
-export const initLikeComponent = (renderPostsPageComponent, appEl, token) => {
-    token = getToken()
-    const likesButtons = document.querySelectorAll('.like-button')
+export const initLikeComponent = (
+    renderPostsPageComponent,
+    appEl,
+    token,
+    posts,
+) => {
+    // token = getToken()
+    const likesButtons = appEl.querySelectorAll('.like-button')
 
     likesButtons.forEach((likeButton) => {
         likeButton.addEventListener('click', async (event) => {
@@ -30,10 +35,11 @@ export const initLikeComponent = (renderPostsPageComponent, appEl, token) => {
                     updatePost = await addingLikesPosts({
                         token,
                         postId,
-                    }).catch((error) => {
-                        alert(error.message)
-                        goToPage(AUTH_PAGE)
                     })
+                    // .catch((error) => {
+                    //     alert(error.message)
+                    //     goToPage(AUTH_PAGE)
+                    // })
                 }
 
                 const postIndex = posts.findIndex(
@@ -41,7 +47,7 @@ export const initLikeComponent = (renderPostsPageComponent, appEl, token) => {
                 )
                 posts[postIndex] = updatePost.post
 
-                renderPostsPageComponent({ appEl })
+                renderPostsPageComponent({ appEl, posts })
             } catch (error) {
                 console.log(error)
 
