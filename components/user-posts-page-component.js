@@ -4,10 +4,14 @@ import { posts, goToPage } from '../index.js'
 import { initLikeComponent } from './init-like-component.js'
 // import { userName } from '../index.js'
 import { clearingHtml } from './clearing-html-component.js'
+import { renderPostsPageComponent } from './posts-page-component.js'
 
-export function renderPostsPageComponent({ appEl }) {
+export function renderUserPostsPageComponent({ appEl, posts }) {
     // @TODO: реализовать рендер постов из api
-
+    if (!posts || posts.length === 0) {
+        appEl.innerHTML = `<p>У этого пользователя нет публикаций</p>`
+        return
+    }
     const postHtml = posts
         .map((post, index) => {
             let likeButtonImg = post.isLiked
@@ -53,11 +57,22 @@ export function renderPostsPageComponent({ appEl }) {
         })
         .join('')
 
+    //     const userPostHtml = posts.map((post) => {
+    //         return `
+    //     <div class="post-header" data-user-id="${post.user.id}">
+    //         <img src="${post.user.imageUrl}" class="post-header__user-image">
+    //         <p class="post-header__user-name">${clearingHtml(post.user.name)}</p>
+    //     </div>
+    //     <h4>Публикации пользователя</h4>
+    // `
+    //     }).join('')
+    //<div class="user-post-header">${userPostHtml}</div>
+
     const appHtml = `
         <div class="page-container">
             <div class="header-container"></div>
                 <ul class="posts">${postHtml}</ul>
-        </div>`
+            </div>`
 
     appEl.innerHTML = appHtml
 

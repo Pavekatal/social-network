@@ -55,6 +55,57 @@ export function addingPosts({ token, description, imageUrl }) {
     })
 }
 
+export function deletePosts({ token, postId }) {
+    return fetch(`${postsHost}/${postId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: token,
+        },
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('В процессе удаления поста произошла ошибка')
+        }
+
+        return response.json()
+    })
+}
+
+export function addingLikesPosts({ token, postId }) {
+    return fetch(`${postsHost}/${postId}/like`, {
+        method: 'POST',
+        headers: {
+            Authorization: token,
+        },
+        body: JSON.stringify({ postId }),
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error(
+                'При выполнении операции Поставить лайк произошла ошибка',
+            )
+        }
+
+        return response.json()
+    })
+}
+
+export function removeLikesPosts({ token, postId }) {
+    return fetch(`${postsHost}/${postId}/dislike`, {
+        method: 'POST',
+        headers: {
+            Authorization: token,
+        },
+        body: JSON.stringify({ postId }),
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error(
+                'При выполнении операции Убрать лайк произошла ошибка',
+            )
+        }
+
+        return response.json()
+    })
+}
+
 export function registerUser({ login, password, name, imageUrl }) {
     return fetch(baseHost + '/api/user', {
         method: 'POST',

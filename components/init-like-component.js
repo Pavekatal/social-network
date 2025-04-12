@@ -21,9 +21,9 @@ export const initLikeComponent = (renderPostsPageComponent, appEl) => {
                 }
 
                 renderPostsPageComponent({ appEl })
-            } else {
-                alert('Чтобы поставить лайк, авторизуйтесь')
-            }
+            } //else {
+            //     alert('Чтобы поставить лайк, авторизуйтесь')
+            // }
         })
     })
 }

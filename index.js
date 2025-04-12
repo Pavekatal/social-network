@@ -15,7 +15,7 @@ import {
     removeUserFromLocalStorage,
     saveUserToLocalStorage,
 } from './helpers.js'
-// import { renderUserPostsPageComponent } from './components/user-posts-page-component.js'
+import { renderUserPostsPageComponent } from './components/user-posts-page-component.js'
 
 export let user = getUserFromLocalStorage()
 export let page = null
@@ -167,7 +167,7 @@ const renderApp = () => {
     if (page === USER_POSTS_PAGE) {
         // @TODO: реализовать страницу с фотографиями отдельного пользвателя
         // appEl.innerHTML = 'Здесь будет страница фотографий пользователя'
-        return renderPostsPageComponent({ appEl })
+        return renderUserPostsPageComponent({ appEl, posts })
     }
 }
 
