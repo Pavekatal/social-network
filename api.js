@@ -76,15 +76,20 @@ export function addingLikesPosts({ token, postId }) {
         headers: {
             Authorization: token,
         },
-        body: JSON.stringify({ postId }),
     }).then((response) => {
-        if (!response.ok) {
+        if (response.ok) {
+            return response.json()
+        } else {
+            if (response.status === 401) {
+                throw new Error(
+                    'Чтобы поставить лайк, необходимо авторизоваться',
+                )
+            }
+
             throw new Error(
                 'При выполнении операции Поставить лайк произошла ошибка',
             )
         }
-
-        return response.json()
     })
 }
 
@@ -94,7 +99,6 @@ export function removeLikesPosts({ token, postId }) {
         headers: {
             Authorization: token,
         },
-        body: JSON.stringify({ postId }),
     }).then((response) => {
         if (!response.ok) {
             throw new Error(
