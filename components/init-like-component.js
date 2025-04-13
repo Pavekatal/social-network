@@ -54,3 +54,31 @@ export const initLikeComponent = (
         })
     })
 }
+
+export const renderModalLikesList = (posts) => {
+    const likeCountsElements = document.querySelectorAll('.post-likes-count')
+    const modalContainer = document.querySelector('.post-modal-container')
+    const likesListElement = document.querySelector('.post-modal-list')
+    const closeModalButton = document.querySelector('.button-close-modal')
+
+    function renderLikesList(likesList) {
+        likesListElement.innerHTML = ''
+        likesList.forEach((user) => {
+            const userItem = document.createElement('p')
+            userItem.textContent = user.name
+            likesListElement.appendChild(userItem)
+        })
+    }
+
+    likeCountsElements.forEach((likeCountElement, index) => {
+        likeCountElement.addEventListener('click', () => {
+            const likesList = posts[index].likes
+            renderLikesList(likesList)
+            modalContainer.style.display = 'block'
+        })
+    })
+
+    closeModalButton.addEventListener('click', () => {
+        modalContainer.style.display = 'none'
+    })
+}

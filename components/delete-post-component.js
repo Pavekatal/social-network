@@ -1,5 +1,5 @@
 import { deletePosts } from '../api.js'
-import { goToPage } from '../index.js'
+import { goToPage, user } from '../index.js'
 import { AUTH_PAGE, POSTS_PAGE } from '../routes.js'
 
 export const deletePostCoponent = (token) => {
@@ -8,11 +8,27 @@ export const deletePostCoponent = (token) => {
     deletePostButtons.forEach((deletePostButton) => {
         deletePostButton.addEventListener('click', async (event) => {
             event.stopPropagation()
+
+            console.log('user:', user)
+
+            let userId = user._id
             const postId = deletePostButton.dataset.postId
 
             if (!token) {
                 alert('Необходимо авторизоваться')
                 goToPage(AUTH_PAGE)
+                return
+            }
+
+            const postElement = deletePostButton.closest('.post')
+            const authorId =
+                postElement.querySelector('.post-header').dataset.userId
+
+            console.log('authorId:', authorId)
+            console.log('user.id:', userId)
+
+            if (authorId !== userId) {
+                alert('Нельзя удалить чужой пост')
                 return
             }
 

@@ -90,6 +90,10 @@
     align-items: center;
 }
 
+.post-likes-count {
+    cursor: pointer;
+}
+
 .like-button {
     border: none;
     background-color: transparent;
@@ -97,6 +101,10 @@
     padding-left: 0px;
     padding-bottom: 5px;
     cursor: pointer;
+}
+
+.like-button:hover {
+    scale: 1.1;
 }
 
 .user-name {
@@ -107,6 +115,7 @@
     font-size: 14px;
     line-height: 18px;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .post-date {
@@ -117,11 +126,21 @@
     margin-top: 20px;
 }
 
+.post {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
 .posts-user-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-bottom: 12px;
+}
+
+.post-user-content {
+    display: flex;
+    align-items: center;
 }
 
 .posts-user-header__user-image {
@@ -219,4 +238,33 @@
 
 .post-user-name {
     font-weight: bold;
+}
+
+.post-modal-container {
+    width: 330px;
+    max-height: 400px;
+    position: fixed;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0 0 8px 5px rgba(94, 94, 95, 0.5);
+    padding: 20px;
+}
+
+.post-modal-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.post-modal-header {
+    font-weight: bold;
+}
+
+.button-close-modal {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.delete-post-button {
+    font-size: 30px;
 }

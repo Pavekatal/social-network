@@ -1,7 +1,10 @@
 import { USER_POSTS_PAGE } from '../routes.js'
 import { renderHeaderComponent } from './header-component.js'
 import { goToPage, getToken, user } from '../index.js'
-import { initLikeComponent } from './init-like-component.js'
+import {
+    initLikeComponent,
+    renderModalLikesList,
+} from './init-like-component.js'
 import { clearingHtml } from './clearing-html-component.js'
 import { deletePostCoponent } from './delete-post-component.js'
 
@@ -11,6 +14,8 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
         appEl.innerHTML = `<p>У этого пользователя нет публикаций</p>`
         return
     }
+
+    const authorPosts = posts[0].user
 
     const postHtml = posts
         .map((post, index) => {
@@ -37,7 +42,7 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
                             <p class="post-header__user-name">${clearingHtml(post.user.name)}</p>
                         </div>
                         <div>
-                            <button data-post-id="${post.id}" class="header-button delete-post-button">Удалить пост</button>
+                            <button data-post-id="${post.id}" class="header-button delete-post-button">×</button>
                         </div>
                     </div>
                     <div class="post-image-container">
@@ -50,6 +55,13 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
                       <p class="post-likes-text">
                         Нравится: <strong class="post-likes-count">${likeCountText}</strong>
                       </p>
+                      <div class="post-modal-container" style="display: none">
+                        <div class="post-modal-content">
+                            <h2>Пользователи, которым понравился пост</h2>
+                            <span class="button-close-modal">&times;</span>
+                        </div>
+                        <div class="post-modal-list"></div>
+                      </div>
                     </div>
                     <p class="post-text">
                       <span class="user-name">${clearingHtml(post.user.name)}</span>
@@ -67,8 +79,10 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
             <div class="header-container"></div>
             <div class="post-user-header">
                 <h3>Публикации пользователя</h3> 
-                <img class="post-header__user-image" src="${user.imageUrl}">
-                <p class="post-user-name">${clearingHtml(user.name)}</p>
+                <div class="post-user-content">
+                    <img class="post-header__user-image" src="${authorPosts.imageUrl}">
+                    <p class="post-user-name">${clearingHtml(authorPosts.name)}</p>
+                </div>
             </div> 
             <ul class="posts">${postHtml}</ul>
         </div>`
@@ -77,6 +91,7 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
 
     initLikeComponent(renderUserPostsPageComponent, appEl, getToken(), posts)
     deletePostCoponent(getToken(), USER_POSTS_PAGE)
+    renderModalLikesList(posts)
 
     console.log('Актуальный список постов:', posts)
 

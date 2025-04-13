@@ -1,7 +1,10 @@
 import { USER_POSTS_PAGE, POSTS_PAGE } from '../routes.js'
 import { renderHeaderComponent } from './header-component.js'
 import { posts, goToPage, getToken } from '../index.js'
-import { initLikeComponent } from './init-like-component.js'
+import {
+    initLikeComponent,
+    renderModalLikesList,
+} from './init-like-component.js'
 import { clearingHtml } from './clearing-html-component.js'
 import { deletePostCoponent } from './delete-post-component.js'
 
@@ -33,7 +36,7 @@ export function renderPostsPageComponent({ appEl }) {
                             <p class="post-header__user-name">${clearingHtml(post.user.name)}</p>
                         </div>
                         <div>
-                            <button data-post-id="${post.id}" class="header-button delete-post-button">Удалить пост</button>
+                            <button data-post-id="${post.id}" class="header-button delete-post-button">×</button>
                         </div>
                     </div>
                     <div class="post-image-container">
@@ -46,6 +49,13 @@ export function renderPostsPageComponent({ appEl }) {
                       <p class="post-likes-text">
                         Нравится: <strong class="post-likes-count">${likeCountText}</strong>
                       </p>
+                      <div class="post-modal-container" style="display: none">
+                        <div class="post-modal-content">
+                            <p class="post-modal-header">Пользователи, которым понравился пост</p>
+                            <span class="button-close-modal">&times;</span>
+                        </div>
+                        <div class="post-modal-list"></div>
+                      </div>
                     </div>
                     <p class="post-text">
                       <span class="user-name">${clearingHtml(post.user.name)}</span>
@@ -68,6 +78,7 @@ export function renderPostsPageComponent({ appEl }) {
 
     initLikeComponent(renderPostsPageComponent, appEl, getToken(), posts)
     deletePostCoponent(getToken(), POSTS_PAGE)
+    renderModalLikesList(posts)
     console.log('Актуальный список постов:', posts)
 
     /**
