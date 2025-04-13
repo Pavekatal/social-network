@@ -50,8 +50,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
     cursor: pointer;
+}
+
+.post-header__user-data {
+    display: flex;
+    align-items: center;
 }
 
 .post-header__user-image {
