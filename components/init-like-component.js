@@ -8,7 +8,6 @@ export const initLikeComponent = (
     token,
     posts,
 ) => {
-    // token = getToken()
     const likesButtons = appEl.querySelectorAll('.like-button')
 
     likesButtons.forEach((likeButton) => {
@@ -36,10 +35,6 @@ export const initLikeComponent = (
                         token,
                         postId,
                     })
-                    // .catch((error) => {
-                    //     alert(error.message)
-                    //     goToPage(AUTH_PAGE)
-                    // })
                 }
 
                 const postIndex = posts.findIndex(

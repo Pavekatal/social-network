@@ -62,7 +62,7 @@ export function deletePosts({ token, postId }) {
             Authorization: token,
         },
     }).then((response) => {
-        if (!response.ok) {
+        if (response.status === 401) {
             throw new Error('В процессе удаления поста произошла ошибка')
         }
 

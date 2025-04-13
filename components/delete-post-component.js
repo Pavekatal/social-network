@@ -2,12 +2,7 @@ import { deletePosts } from '../api.js'
 import { goToPage } from '../index.js'
 import { AUTH_PAGE, POSTS_PAGE } from '../routes.js'
 
-export const deletePostCoponent = (
-    renderPostsPageComponent,
-    appEl,
-    token,
-    posts,
-) => {
+export const deletePostCoponent = (token) => {
     const deletePostButtons = document.querySelectorAll('.delete-post-button')
 
     deletePostButtons.forEach((deletePostButton) => {
@@ -28,20 +23,14 @@ export const deletePostCoponent = (
 
                 if (messageForDeletePost) {
                     await deletePosts({ token, postId })
-
-                    const updatedPosts = posts.filter(
-                        (post) => post.id !== postId,
-                    )
-
-                    posts = updatedPosts
-
-                    renderPostsPageComponent({ appEl, posts })
-                    goToPage(POSTS_PAGE)
+                    console.log('Пост успешно удален')
+                    return goToPage(POSTS_PAGE)
                 } else {
+                    console.log('Удаление поста отменено')
                     return
                 }
             } catch (error) {
-                if (error.responce && error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     alert('Сессия истекла. Пожалуйста, авторизуйтесь')
                 } else {
                     alert('В процессе удаления поста произошла ошибка')

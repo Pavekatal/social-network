@@ -37,7 +37,7 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
                             <p class="post-header__user-name">${clearingHtml(post.user.name)}</p>
                         </div>
                         <div>
-                            <button title="${post.user.id}" class="header-button delete-post-button">Удалить пост</button>
+                            <button data-post-id="${post.id}" class="header-button delete-post-button">Удалить пост</button>
                         </div>
                     </div>
                     <div class="post-image-container">
@@ -76,7 +76,8 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
     appEl.innerHTML = appHtml
 
     initLikeComponent(renderUserPostsPageComponent, appEl, getToken(), posts)
-    deletePostCoponent(renderUserPostsPageComponent, appEl, getToken(), posts)
+    deletePostCoponent(getToken(), USER_POSTS_PAGE)
+
     console.log('Актуальный список постов:', posts)
 
     /**
