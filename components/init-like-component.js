@@ -74,7 +74,7 @@ export const renderModalLikesList = (posts) => {
         likeCountElement.addEventListener('click', () => {
             const likesList = posts[index].likes
             renderLikesList(likesList)
-            modalContainer.style.display = 'block'
+            modalContainer.style.display = 'flex'
         })
     })
 

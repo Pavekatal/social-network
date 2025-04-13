@@ -243,11 +243,13 @@
 .post-modal-container {
     width: 330px;
     max-height: 400px;
+    top: 50%;
     position: fixed;
     z-index: 1;
     background-color: #fff;
     box-shadow: 0 0 8px 5px rgba(94, 94, 95, 0.5);
     padding: 20px;
+    flex-direction: column;
 }
 
 .post-modal-content {
