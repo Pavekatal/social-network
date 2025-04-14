@@ -57,7 +57,7 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
                       </p>
                       <div class="post-modal-container" style="display: none">
                         <div class="post-modal-content">
-                            <h2>Пользователи, которым понравился пост</h2>
+                            <p class="post-modal-header">Пользователи, которым понравился пост</p>
                             <span class="button-close-modal">&times;</span>
                         </div>
                         <div class="post-modal-list"></div>

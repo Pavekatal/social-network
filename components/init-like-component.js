@@ -63,10 +63,43 @@ export const renderModalLikesList = (posts) => {
 
     function renderLikesList(likesList) {
         likesListElement.innerHTML = ''
-        likesList.forEach((user) => {
-            const userItem = document.createElement('p')
-            userItem.textContent = user.name
-            likesListElement.appendChild(userItem)
+        likesList.forEach((likes) => {
+            // const userItem = document.createElement('p')
+            // userItem.textContent = user.name
+            // likesListElement.appendChild(userItem)
+
+            const userIdFromLikes = likes.id
+            console.log('userIdFromLikes:', userIdFromLikes)
+            const userNameFromLikes = likes.name
+
+            const userPost = posts.find(
+                (post) => post.user.id === userIdFromLikes,
+            )
+
+            if (userPost) {
+                const userItem = document.createElement('div')
+                userItem.classList.add('user-item')
+
+                const userImage = document.createElement('img')
+                userImage.src = userPost.user.imageUrl
+                userImage.classList.add('post-header__user-image')
+
+                const userName = document.createElement('p')
+                userName.textContent = userNameFromLikes
+
+                userItem.appendChild(userImage)
+                userItem.appendChild(userName)
+                likesListElement.appendChild(userItem)
+            }
+
+            // const userIdFromUsers = posts[index].user.id
+            // const imageUrlFromUsers = posts[index].user.imageUrl
+            // console.log('userIdFromUsers:', userIdFromUsers)
+            // console.log('imageUrlFromUsers:', imageUrlFromUsers)
+
+            // if (userIdFromLikes === userIdFromUsers) {
+            //     imageUrlForLikes = imageUrlFromUsers
+            // }
         })
     }
 

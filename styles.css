@@ -270,3 +270,14 @@
 .delete-post-button {
     font-size: 30px;
 }
+
+.post-modal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+}
