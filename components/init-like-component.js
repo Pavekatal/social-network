@@ -64,10 +64,6 @@ export const renderModalLikesList = (posts) => {
     function renderLikesList(likesList) {
         likesListElement.innerHTML = ''
         likesList.forEach((likes) => {
-            // const userItem = document.createElement('p')
-            // userItem.textContent = user.name
-            // likesListElement.appendChild(userItem)
-
             const userIdFromLikes = likes.id
             console.log('userIdFromLikes:', userIdFromLikes)
             const userNameFromLikes = likes.name
@@ -91,15 +87,6 @@ export const renderModalLikesList = (posts) => {
                 userItem.appendChild(userName)
                 likesListElement.appendChild(userItem)
             }
-
-            // const userIdFromUsers = posts[index].user.id
-            // const imageUrlFromUsers = posts[index].user.imageUrl
-            // console.log('userIdFromUsers:', userIdFromUsers)
-            // console.log('imageUrlFromUsers:', imageUrlFromUsers)
-
-            // if (userIdFromLikes === userIdFromUsers) {
-            //     imageUrlForLikes = imageUrlFromUsers
-            // }
         })
     }
 

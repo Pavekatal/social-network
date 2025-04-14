@@ -21,6 +21,8 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
 
     const postHtml = posts
         .map((post, index) => {
+            // let allPosts = posts
+
             const createdPostDate = post.createdAt
 
             const result = formatDistanceToNow(createdPostDate, {
