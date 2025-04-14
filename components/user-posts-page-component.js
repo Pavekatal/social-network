@@ -7,6 +7,8 @@ import {
 } from './init-like-component.js'
 import { clearingHtml } from './clearing-html-component.js'
 import { deletePostCoponent } from './delete-post-component.js'
+import { formatDistanceToNow } from 'date-fns'
+import { ru } from 'date-fns/locale'
 
 export function renderUserPostsPageComponent({ appEl, posts }) {
     // @TODO: реализовать рендер постов из api
@@ -19,6 +21,13 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
 
     const postHtml = posts
         .map((post, index) => {
+            const createdPostDate = post.createdAt
+
+            const result = formatDistanceToNow(createdPostDate, {
+                addSuffix: true,
+                locale: ru,
+            })
+
             let likeButtonImg = post.isLiked
                 ? '<img src="./assets/images/like-active.svg"></img>'
                 : '<img src="./assets/images/like-not-active.svg"></img>'
@@ -68,7 +77,7 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
                       ${clearingHtml(post.description)}
                     </p>
                     <p class="post-date">
-                      ${new Date(post.createdAt).toLocaleString()}
+                      ${result}
                     </p>
                   </li>`
         })

@@ -15,14 +15,12 @@ export function renderPostsPageComponent({ appEl }) {
 
     const postHtml = posts
         .map((post, index) => {
-            const now = new Date()
             const createdPostDate = post.createdAt
-            console.log('createdAt:', createdPostDate)
+
             const result = formatDistanceToNow(createdPostDate, {
                 addSuffix: true,
                 locale: ru,
             })
-            console.log('result:', result)
 
             let likeButtonImg = post.isLiked
                 ? '<img src="./assets/images/like-active.svg"></img>'
