@@ -11,14 +11,14 @@ export const deletePostCoponent = (token) => {
 
             console.log('user:', user)
 
-            let userId = user._id
-            const postId = deletePostButton.dataset.postId
-
             if (!token) {
                 alert('Необходимо авторизоваться')
                 goToPage(AUTH_PAGE)
                 return
             }
+
+            let userId = user._id
+            const postId = deletePostButton.dataset.postId
 
             const postElement = deletePostButton.closest('.post')
             const authorId =

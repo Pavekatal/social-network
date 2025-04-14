@@ -3,7 +3,7 @@ import { renderHeaderComponent } from './header-component.js'
 import { goToPage, getToken, user } from '../index.js'
 import {
     initLikeComponent,
-    renderModalLikesList,
+    renderModalLikesListUser,
 } from './init-like-component.js'
 import { clearingHtml } from './clearing-html-component.js'
 import { deletePostCoponent } from './delete-post-component.js'
@@ -102,7 +102,7 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
 
     initLikeComponent(renderUserPostsPageComponent, appEl, getToken(), posts)
     deletePostCoponent(getToken(), USER_POSTS_PAGE)
-    renderModalLikesList(posts)
+    renderModalLikesListUser(posts)
 
     console.log('Актуальный список постов:', posts)
 
