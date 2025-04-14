@@ -138,9 +138,21 @@
     margin-bottom: 12px;
 }
 
+.post-user-heading {
+    font-size: 26px;
+}
+
+.post-user-header-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+}
+
 .post-user-content {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .posts-user-header__user-image {
@@ -231,13 +243,15 @@
 .post-user-header {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #e0e0e0;
 }
 
 .post-user-name {
-    font-weight: bold;
+    font-size: 26px;
+    font-weight: 500;
 }
 
 .post-modal-container {

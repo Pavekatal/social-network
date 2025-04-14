@@ -87,9 +87,9 @@ export function renderUserPostsPageComponent({ appEl, posts }) {
         <div class="page-container">
             <div class="header-container"></div>
             <div class="post-user-header">
-                <h3>Публикации пользователя</h3> 
+                <h3 class="post-user-heading">Публикации пользователя</h3> 
                 <div class="post-user-content">
-                    <img class="post-header__user-image" src="${authorPosts.imageUrl}">
+                    <img class="post-header__user-image post-user-header-image" src="${authorPosts.imageUrl}">
                     <p class="post-user-name">${clearingHtml(authorPosts.name)}</p>
                 </div>
             </div> 
