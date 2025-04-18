@@ -1,20 +1,28 @@
-import { USER_POSTS_PAGE, POSTS_PAGE } from '../routes.js'
+import { USER_POSTS_PAGE } from '../routes.js'
 import { renderHeaderComponent } from './header-component.js'
-import { posts, goToPage, getToken } from '../index.js'
+import { goToPage, getToken, user } from '../index.js'
 import {
     initLikeComponent,
-    renderModalLikesList,
+    renderModalLikesListUser,
 } from './init-like-component.js'
 import { clearingHtml } from './clearing-html-component.js'
 import { deletePostCoponent } from './delete-post-component.js'
 import { formatDistanceToNow } from 'date-fns'
 import { ru } from 'date-fns/locale'
 
-export function renderPostsPageComponent({ appEl }) {
+export function renderUserPostsPageComponent({ appEl, posts }) {
     // @TODO: реализовать рендер постов из api
+    if (!posts || posts.length === 0) {
+        appEl.innerHTML = `<p>У этого пользователя нет публикаций</p>`
+        return
+    }
+
+    const authorPosts = posts[0].user
 
     const postHtml = posts
         .map((post, index) => {
+            // let allPosts = posts
+
             const createdPostDate = post.createdAt
 
             const result = formatDistanceToNow(createdPostDate, {
@@ -80,14 +88,22 @@ export function renderPostsPageComponent({ appEl }) {
     const appHtml = `
         <div class="page-container">
             <div class="header-container"></div>
-                <ul class="posts">${postHtml}</ul>
+            <div class="post-user-header">
+                <h3 class="post-user-heading">Публикации пользователя</h3> 
+                <div class="post-user-content">
+                    <img class="post-header__user-image post-user-header-image" src="${authorPosts.imageUrl}">
+                    <p class="post-user-name">${clearingHtml(authorPosts.name)}</p>
+                </div>
+            </div> 
+            <ul class="posts">${postHtml}</ul>
         </div>`
-
+    console.log(user)
     appEl.innerHTML = appHtml
 
-    initLikeComponent(renderPostsPageComponent, appEl, getToken(), posts)
-    deletePostCoponent(getToken(), POSTS_PAGE)
-    renderModalLikesList(posts)
+    initLikeComponent(renderUserPostsPageComponent, appEl, getToken(), posts)
+    deletePostCoponent(getToken(), USER_POSTS_PAGE)
+    renderModalLikesListUser(posts)
+
     console.log('Актуальный список постов:', posts)
 
     /**
