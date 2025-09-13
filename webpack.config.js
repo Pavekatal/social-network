@@ -3,6 +3,6 @@ module.exports = {
     output: {
         filename: 'main.js', // Выходной файл, который подключаем к HTML
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/social-network/', // Сохранится он по пути "./dist/main.js"
+        publicPath: '/social-network/', // Сохранится он по пути "./dist/main.js",
     },
 }
