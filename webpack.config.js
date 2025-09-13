@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
     entry: './index.js', // Входной файл, где пишем свой код
     output: {
