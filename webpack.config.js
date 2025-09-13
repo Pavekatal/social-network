@@ -22,6 +22,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './index.html',
         }),
+        new CopyPlugin({
+            patterns: [{ from: 'assets/images', to: 'assets/images' }],
+        }),
     ],
     mode: 'production',
 }
