@@ -1,4 +1,4 @@
-# Instapro
+# Social-network
 
 MVP социальной сети для обмена фотографиями
 
